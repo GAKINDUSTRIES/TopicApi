@@ -1,9 +1,32 @@
 FORMAT: 1A
-HOST: http://rails5-api-base.herokuapp.com
+HOST: https://target-mvd-api.herokuapp.com/
 
-# API BASE
+# Target MVD
 
-API BASE is an internal TopTier project created to facilitate and standardize developers work.
+Target MVD is an API that provides a collection of endpoints to help developers with technologies induction.
+
+
+## Server [/api/v1/status]
+
+### Status [GET]
+
++ Request (application/json)
+    + Body
+
++ Response 406
+
++ Response 503
+
+
++ Response 200 (application/json)
+    + Headers
+
+
+    + Body
+
+            {
+              "online": "true"
+            }
 
 ## Users Collection [/api/v1/users]
 
@@ -36,7 +59,7 @@ API BASE is an internal TopTier project created to facilitate and standardize de
 
 
     + Body
-      
+
             {
               "id": 102,
               "email": "test@test.com",
@@ -75,14 +98,16 @@ API BASE is an internal TopTier project created to facilitate and standardize de
 
 
     + Body
-      
+
             {
               "user":
                 {
+                  "id": "102",
                   "email": "test@test.com",
+                  "first_name": "John",
+                  "last_name": "Doe",
+                  "full_name": "John Doe",
                   "username": "test",
-                  "first_name": "Juanito",
-                  "last_name": "La Cruz"
                 }
             }
 
@@ -102,9 +127,9 @@ API BASE is an internal TopTier project created to facilitate and standardize de
               "user":
                 {
                   "username": "test",
-                  "password": "password",
-                  "first_name": "Juanito",
-                  "last_name": "La Cruz"
+                  "email": "test@test.com",
+                  "first_name": "John",
+                  "last_name": "Doe"
                 }
             }
 
@@ -118,20 +143,22 @@ API BASE is an internal TopTier project created to facilitate and standardize de
 
 
     + Body
-      
+
             {
               "user":
                 {
+                  "id": "102",
                   "email": "test@test.com",
+                  "first_name": "John",
+                  "last_name": "Doe",
+                  "full_name": "John Doe",
                   "username": "test",
-                  "first_name": "Juanito",
-                  "last_name": "La Cruz"
                 }
             }
 
 
 ## Login [/api/v1/users/sign_in]
-  
+
 ### Login [POST]
 
 + Request (application/json)
@@ -160,7 +187,7 @@ API BASE is an internal TopTier project created to facilitate and standardize de
 
 
     + Body
-      
+
             {
               "data":
                 {
@@ -171,16 +198,29 @@ API BASE is an internal TopTier project created to facilitate and standardize de
                   "first_name": "",
                   "last_name": "",
                   "username": "test",
-                  "created_at": "2017-02-23T13:54:33.283Z",
-                  "updated_at": "2017-02-23T13:54:33.425Z"
                 }
             }
 
 
 ## Login with Facebook [/api/v1/users/facebook]
-  
+
 ### Login with Facebook [POST]
 
+
++ Response 403
+    + Body
+
+            {
+              "error": "Not Authorized"
+            }
+
++ Response 400
+
+    + Body
+
+            {
+              "error": "User already registered with email/password"
+            }
 
 + Response 200 (application/json)
     + Headers
@@ -239,7 +279,7 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
 + Response 200 (application/json)
     + Body
 
-            { 
+            {
               "success": true,
               "data":
                 {

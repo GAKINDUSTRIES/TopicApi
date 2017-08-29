@@ -35,6 +35,7 @@ gem 'sendgrid', '~> 1.2.4'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'faker', '~> 1.7.3'
   gem 'pry-byebug', '~> 3.3.0', platform: :mri
   gem 'rails-controller-testing', '~> 1.0.1'
   gem 'rspec-rails', '~> 3.5.2'
@@ -57,7 +58,6 @@ end
 
 group :test do
   gem 'database_cleaner', '~> 1.4.1'
-  gem 'faker', '~> 1.7.3'
   gem 'shoulda-matchers', '~> 3.1.1'
   gem 'simplecov', '~> 0.13.0', require: false
   gem 'webmock', '~> 2.3.2'

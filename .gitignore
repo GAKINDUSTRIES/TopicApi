@@ -29,3 +29,6 @@ config/application.yml
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
+
+# Add public folder to exclude local data
+/public

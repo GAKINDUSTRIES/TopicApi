@@ -21,6 +21,7 @@
 #  provider               :string           default("email"), not null
 #  uid                    :string           default(""), not null
 #  tokens                 :json
+#  gender                 :integer
 #
 # Indexes
 #

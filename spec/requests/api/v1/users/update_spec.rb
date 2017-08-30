@@ -21,6 +21,7 @@ describe 'PUT api/v1/users/me', type: :request do
 
       expect(json[:user][:id]).to eq user.id
       expect(json[:user][:first_name]).to eq user.first_name
+      expect(json[:user][:gender]).to eq user.gender
     end
   end
 

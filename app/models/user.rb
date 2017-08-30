@@ -21,6 +21,7 @@
 #  provider               :string           default("email"), not null
 #  uid                    :string           default(""), not null
 #  tokens                 :json
+#  gender                 :integer
 #
 # Indexes
 #
@@ -35,6 +36,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
+
+  enum gender: %i(female male other)
 
   validates :uid, uniqueness: { scope: :provider }
   validates :email, uniqueness: true, if: :uses_email?

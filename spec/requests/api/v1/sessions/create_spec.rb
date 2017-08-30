@@ -28,6 +28,7 @@ describe 'POST api/v1/users/sign_in', type: :request do
         uid:        user.email,
         provider:   'email',
         first_name: user.first_name,
+        gender:     user.gender,
         last_name:  user.last_name
       }.with_indifferent_access
       expect(json[:data]).to eq(response_expected)

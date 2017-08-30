@@ -15,6 +15,7 @@ describe 'POST api/v1/users/', type: :request do
         user: {
           username: username,
           email: email,
+          gender: 'male',
           password: password,
           password_confirmation: password_confirmation
         }

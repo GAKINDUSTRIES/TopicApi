@@ -21,6 +21,12 @@ describe 'POST api/v1/users/sign_in', type: :request do
     end
 
     it 'returns the user' do
+      avatar_params = {
+        url:         nil,
+        normal:      { url: nil },
+        small_thumb: { url: nil }
+      }
+
       response_expected = {
         id:         user.id,
         email:      user.email,
@@ -29,7 +35,8 @@ describe 'POST api/v1/users/sign_in', type: :request do
         provider:   'email',
         first_name: user.first_name,
         gender:     user.gender,
-        last_name:  user.last_name
+        last_name:  user.last_name,
+        avatar:     avatar_params
       }.with_indifferent_access
       expect(json[:data]).to eq(response_expected)
     end

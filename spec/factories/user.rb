@@ -4,7 +4,7 @@ FactoryGirl.define do
     password { Faker::Internet.password(8) }
     username { Faker::Internet.unique.user_name }
     uid      { Faker::Number.unique.number(10) }
-    gender   'male'
+    gender 'male'
   end
 
   trait :with_fb do

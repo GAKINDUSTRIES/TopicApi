@@ -21,6 +21,7 @@ gem 'pry-rails', '~> 0.3.4'
 gem 'puma', '~> 3.0'
 gem 'rack-cors', '~> 0.4.0'
 gem 'sendgrid', '~> 1.2.4'
+gem 'mini_magick', '~> 4.3.3'   # Resize images
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

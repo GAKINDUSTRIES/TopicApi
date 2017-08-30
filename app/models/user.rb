@@ -22,6 +22,7 @@
 #  uid                    :string           default(""), not null
 #  tokens                 :json
 #  gender                 :integer
+#  avatar                 :string
 #
 # Indexes
 #
@@ -38,6 +39,8 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   enum gender: %i(female male other)
+
+  mount_uploader :avatar, AvatarUploader
 
   validates :uid, uniqueness: { scope: :provider }
   validates :email, uniqueness: true, if: :uses_email?

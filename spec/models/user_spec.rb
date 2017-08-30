@@ -22,6 +22,7 @@
 #  uid                    :string           default(""), not null
 #  tokens                 :json
 #  gender                 :integer
+#  avatar                 :string
 #
 # Indexes
 #

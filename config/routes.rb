@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do
       devise_scope :user do
         get :status, to: 'api#status'
+        resources :topics, only: :index
         resources :users, only: [:show, :update] do
           controller :sessions do
             post :facebook, on: :collection

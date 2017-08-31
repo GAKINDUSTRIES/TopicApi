@@ -16,6 +16,9 @@ class Topic < ApplicationRecord
 
   validates :label, presence: true
 
+  # Limited to avoid performance issues
+  scope :list_all, -> { limit(50) }
+
   # Method to correctly display topics in ActiveAdmin
   def display_name
     label

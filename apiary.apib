@@ -381,3 +381,42 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
             client: QADgNCWRJj0LyRruqzYbBg
             expiry: 1489009792
             uid: test@test.com
+
+## Topics Collection [/api/v1/topics]
+
+### Get Topics [GET]
+
++ Request (application/json)
+    + Body
+
++ Response 401
+
++ Response 200 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
+
+    + Body
+
+            {
+              "topics": [
+                {
+                  "topic": {
+                    "id": 1,
+                    "label": "new topic",
+                    "icon": "/topic/icon/1/eb7bf9f2-62be-451c-af5b-5b41150eef1c.jpg"
+                  }
+                },
+                {
+                  "topic": {
+                    "id": 2,
+                    "label": "sample",
+                    "icon": "/topic/icon/2/78c08fab-02ce-41b9-8adf-1c2060c0d51f.jpg"
+                  }
+                }
+              ]
+            }
+

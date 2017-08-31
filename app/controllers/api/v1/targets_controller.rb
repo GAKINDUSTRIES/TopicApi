@@ -8,6 +8,10 @@ module Api
         head :created
       end
 
+      def index
+        @targets = current_user.targets.page params[:page]
+      end
+
       private
 
       def target_attrs

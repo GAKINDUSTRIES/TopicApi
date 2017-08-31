@@ -408,6 +408,7 @@ DEPENDENCIES
   haml (~> 4.0.6)
   inherited_resources!
   jbuilder (~> 2.6.1)
+  kaminari (~> 0.17.0)
   koala (~> 1.10.1)
   letter_opener (~> 1.4.1)
   listen (~> 3.0.5)

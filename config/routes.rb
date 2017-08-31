@@ -12,8 +12,8 @@ Rails.application.routes.draw do
       devise_scope :user do
         get :status, to: 'api#status'
         resources :topics, only: :index
-        resources :targets, only: :create
-        resources :users, only: [:show, :update] do
+        resources :targets, only: %i(create index)
+        resources :users, only: %i(show update) do
           controller :sessions do
             post :facebook, on: :collection
           end

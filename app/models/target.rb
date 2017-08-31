@@ -23,4 +23,13 @@ class Target < ActiveRecord::Base
   belongs_to :topic
 
   validates :lat, :lng, :radius, :title, :user, :topic, presence: true
+  validate :amount_of_targets, on: :create
+
+  private
+
+  def amount_of_targets
+    limit = User::TARGET_AMOUNT_LIMIT
+    errors.add(:targets_limit, "You reached the limit of targets created (#{limit})") if
+      user.targets.count == limit
+  end
 end

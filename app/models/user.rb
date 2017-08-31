@@ -38,6 +38,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  TARGET_AMOUNT_LIMIT = 10
+
   enum gender: %i(female male other)
 
   mount_uploader :avatar, AvatarUploader

@@ -22,5 +22,5 @@ class Target < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
 
-  validates :lat, :lng, :radius, presence: true
+  validates :lat, :lng, :radius, :title, :user, :topic, presence: true
 end

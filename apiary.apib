@@ -420,3 +420,32 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
               ]
             }
 
+## Target Collection [/api/v1/targets]
+
+### Create Target [POST]
+
++ Request (application/json)
+    + Body
+
+          {
+            "target": {
+              "title": "new target",
+              "lat": -94.5566,
+              "lng": -94.5566,
+              "radius": 27384.4,
+              "topic_id": 2
+            }
+          }
+
++ Response 401
+
++ Response 400
+
++ Response 201 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
+

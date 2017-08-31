@@ -12,5 +12,12 @@
 class Topic < ApplicationRecord
   mount_uploader :icon, IconUploader
 
+  has_many :targets, dependent: :destroy
+
   validates :label, presence: true
+
+  # Method to correctly display topics in ActiveAdmin
+  def display_name
+    label
+  end
 end

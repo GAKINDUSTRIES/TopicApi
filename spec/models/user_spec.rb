@@ -34,6 +34,10 @@
 require 'rails_helper'
 
 describe User do
+  describe 'Associations' do
+    it { should have_many(:targets).dependent(:destroy)  }
+  end
+
   describe 'validations' do
     subject { build :user }
     it { should validate_uniqueness_of(:uid).scoped_to(:provider) }

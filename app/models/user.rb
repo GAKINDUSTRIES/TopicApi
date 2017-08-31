@@ -42,6 +42,8 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  has_many :targets, dependent: :destroy
+
   validates :uid, uniqueness: { scope: :provider }
   validates :email, uniqueness: true, if: :uses_email?
 

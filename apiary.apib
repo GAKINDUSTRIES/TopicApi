@@ -427,15 +427,15 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
 + Request (application/json)
     + Body
 
-          {
-            "target": {
-              "title": "new target",
-              "lat": -94.5566,
-              "lng": -94.5566,
-              "radius": 27384.4,
-              "topic_id": 2
+            {
+             "target": {
+               "title": "new target",
+               "lat": -94.5566,
+               "lng": -94.5566,
+               "radius": 27384.4,
+               "topic_id": 2
+             }
             }
-          }
 
 + Response 401
 
@@ -454,6 +454,9 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
 
 + Request (application/json)
     + Body
+            {
+              "page": 1
+            }
 
 + Response 401
 
@@ -467,37 +470,63 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
 
     + Body
 
-          {
-            "targets": [
-              {
-                "target": {
-                  "id": 3,
-                  "title": "hola",
-                  "lat": 123,
-                  "lng": 234,
-                  "radius": 234,
-                  "topic_id": 2
+            {
+              "targets": [
+                {
+                  "target": {
+                    "id": 3,
+                    "title": "new target",
+                    "lat": -54.2874,
+                    "lng": 23.28394,
+                    "radius": 234,
+                    "topic_id": 2
+                  }
+                },
+                {
+                  "target": {
+                    "id": 4,
+                    "title": "other target 1",
+                    "lat": -53.2234,
+                    "lng": 43.38473,
+                    "radius": 1,
+                    "topic_id": 1
+                  }
+                },
+                {
+                  "target": {
+                    "id": 5,
+                    "title": "other_target 2",
+                    "lat": -94.5566,
+                    "lng": -94.5566,
+                    "radius": 27384.4,
+                    "topic_id": 2
+                  }
                 }
-              },
-              {
-                "target": {
-                  "id": 4,
-                  "title": "dsf",
-                  "lat": 1,
-                  "lng": 1,
-                  "radius": 1,
-                  "topic_id": 1
-                }
-              },
-              {
-                "target": {
-                  "id": 5,
-                  "title": "new target",
-                  "lat": -94.5566,
-                  "lng": -94.5566,
-                  "radius": 27384.4,
-                  "topic_id": 2
-                }
-              }
-            ]
-        }
+              ]
+            }
+
+## Target [/api/v1/targets/{id}]
+
+### Destroy a Target [DELETE]
+
+
++ Request (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            uid: test@test.com
+
+    + Body
+
+
++ Response 200 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
+
+    + Body
+

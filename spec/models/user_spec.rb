@@ -36,6 +36,7 @@ require 'rails_helper'
 describe User do
   describe 'Associations' do
     it { should have_many(:targets).dependent(:destroy)  }
+    it { should have_many(:match_conversation_instances).dependent(:destroy)  }
   end
 
   describe 'validations' do

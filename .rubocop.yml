@@ -22,6 +22,10 @@ Metrics/CyclomaticComplexity:
 
 Metrics/LineLength:
   Max: 100
+  Exclude:
+    - 'app/models/match_conversation_instance.rb'
+    - 'spec/factories/match_conversation_instances.rb'
+    - 'spec/models/match_conversation_instance_spec.rb'
   # To make it possible to copy or click on URIs in the code, we allow lines
   # containing a URI to be longer than Max.
   AllowURI: true

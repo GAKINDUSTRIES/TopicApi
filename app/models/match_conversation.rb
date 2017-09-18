@@ -17,6 +17,7 @@ class MatchConversation < ApplicationRecord
 
   has_many :match_conversation_instances, dependent: :destroy
   has_many :users, through: :match_conversation_instances
+  has_many :targets, through: :match_conversation_instances
 
   validates :topic, presence: true
 end

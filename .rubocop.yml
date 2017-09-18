@@ -47,3 +47,7 @@ Metrics/PerceivedComplexity:
 SingleSpaceBeforeFirstArg:
  Exclude:
    - app/views/api/**/**/*
+
+Style/Lambda:
+  Exclude:
+    - 'app/models/target.rb'

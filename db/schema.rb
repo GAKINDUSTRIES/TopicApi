@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170911173232) do
+ActiveRecord::Schema.define(version: 20170918165051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -69,14 +70,18 @@ ActiveRecord::Schema.define(version: 20170911173232) do
   end
 
   create_table "targets", force: :cascade do |t|
-    t.string   "title",      null: false
-    t.float    "lat",        null: false
-    t.float    "lng",        null: false
-    t.float    "radius",     null: false
-    t.integer  "topic_id",   null: false
-    t.integer  "user_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string    "title",                                                                                  null: false
+    t.float     "lat",                                                                                    null: false
+    t.float     "lng",                                                                                    null: false
+    t.float     "radius",                                                                                 null: false
+    t.integer   "topic_id",                                                                               null: false
+    t.integer   "user_id",                                                                                null: false
+    t.datetime  "created_at",                                                                             null: false
+    t.datetime  "updated_at",                                                                             null: false
+    t.geography "lonlat",     limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
+    t.boolean   "matched",                                                                default: false
+    t.index ["lonlat"], name: "index_targets_on_lonlat", using: :gist
+    t.index ["matched"], name: "index_targets_on_matched", using: :btree
     t.index ["topic_id"], name: "index_targets_on_topic_id", using: :btree
     t.index ["user_id"], name: "index_targets_on_user_id", using: :btree
   end

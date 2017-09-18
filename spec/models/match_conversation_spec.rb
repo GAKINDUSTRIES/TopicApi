@@ -19,6 +19,7 @@ describe MatchConversation do
     it { should belong_to(:topic) }
     it { should have_many(:match_conversation_instances).dependent(:destroy) }
     it { should have_many(:users).through(:match_conversation_instances) }
+    it { should have_many(:targets).through(:match_conversation_instances) }
   end
 
   describe 'Validations' do

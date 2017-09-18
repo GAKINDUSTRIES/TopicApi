@@ -11,9 +11,13 @@
 #  user_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  lonlat     :geography({:srid point, 4326
+#  matched    :boolean          default("false")
 #
 # Indexes
 #
+#  index_targets_on_lonlat    (lonlat)
+#  index_targets_on_matched   (matched)
 #  index_targets_on_topic_id  (topic_id)
 #  index_targets_on_user_id   (user_id)
 #

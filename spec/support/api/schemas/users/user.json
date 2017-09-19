@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "id":         { "type": "integer" },
+    "email":      { "type": "string" },
+    "first_name": { "type": "string" },
+    "last_name":  { "type": "string" },
+    "full_name":  { "type": "string" },
+    "username":   { "type": "string" },
+    "gender":     { "type": "string" },
+    "avatar": {
+      "original_url":       { "type": "string" },
+      "normal_url":         { "type": "string" },
+      "small_thumb_url":    { "type": "string" }
+    }
+  }
+}
+

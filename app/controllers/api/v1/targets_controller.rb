@@ -6,8 +6,9 @@ module Api
       helper_method :target
 
       def create
-        current_user.targets.create! targets_params
-        head :created
+        @target = current_user.targets.create! targets_params
+        @match_conversation = @target.match_conversation
+        @match_user = @match_conversation.try(:another_party, current_user)
       end
 
       def index

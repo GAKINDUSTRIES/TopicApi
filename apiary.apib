@@ -423,6 +423,7 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
 ## Target Collection [/api/v1/targets]
 
 ### Create Target [POST]
+Response may or may not add matched_user and match_conversation depending if there was a match or not.
 
 + Request (application/json)
     + Body
@@ -441,7 +442,7 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
 
 + Response 400
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
     + Headers
 
             access-token: sO2bm_Bpdyoo8r78jZ-fqg
@@ -449,11 +450,44 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
             expiry: 1489009792
             uid: test@test.com
 
+   + Body
+
+            {
+              "target": {
+                "id": 9,
+                "title": "new target",
+                "lat": 27.5566,
+                "lng": 78.5566,
+                "radius": 27384.4,
+                "topic_id": 9
+              },
+              "match_conversation": {
+                "id": 2,
+                "topic_id": 9
+              },
+              "matched_user": {
+                "id": 11,
+                "email": "jane.doe@mail.com",
+                "first_name": "Jane",
+                "last_name": "Doe",
+                "full_name": "Jane Doe",
+                "username": "JaneDoe",
+                "gender": "female",
+                "avatar": {
+                  "original_url": "/user/icon/2/78c08fab-02ce-41b9-8adf-1c2060c0d51f.jpg",
+                  "normal_url": "/user/icon/2/78c08fab-02ce-41b9-8adf-1c2060c0d51f.jpg",
+                  "small_thumb_url": "/user/icon/2/78c08fab-02ce-41b9-8adf-1c2060c0d51f.jpg"
+                }
+              }
+            }
+
+
 
 ### Get Targets [GET]
 
 + Request (application/json)
     + Body
+
             {
               "page": 1
             }

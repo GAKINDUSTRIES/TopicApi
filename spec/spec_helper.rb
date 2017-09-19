@@ -4,6 +4,7 @@ require File.expand_path('../../config/environment', __FILE__)
 
 require 'factory_girl_rails'
 require 'helpers'
+require 'json_matchers/rspec'
 require 'webmock/rspec'
 require 'shoulda/matchers'
 

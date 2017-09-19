@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "id":       { "type": "integer" },
+    "title":    { "type": "string" },
+    "lat":      { "type": "float" },
+    "lng":      { "type": "float" },
+    "radius":   { "type": "float" },
+    "topic_id": { "type": "integer" }
+  }
+}

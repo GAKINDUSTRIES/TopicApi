@@ -27,6 +27,7 @@ class Target < ActiveRecord::Base
   belongs_to :topic
 
   has_one :match_conversation_instance, dependent: :destroy
+  has_one :match_conversation, through: :match_conversation_instance
 
   validates :lng, :lat, :radius, :title, :user, :topic, presence: true
   validate :amount_of_targets, on: :create

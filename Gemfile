@@ -43,6 +43,7 @@ group :development, :test do
   gem 'rails-controller-testing', '~> 1.0.1'
   gem 'rspec-rails', '~> 3.5.2'
   gem 'rspec-core', '~> 3.5.2'
+  gem 'json_matchers', '~> 0.7.0'
 end
 
 group :development do

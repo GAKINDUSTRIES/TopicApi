@@ -20,4 +20,8 @@ class MatchConversation < ApplicationRecord
   has_many :targets, through: :match_conversation_instances
 
   validates :topic, presence: true
+
+  def another_party(user)
+    users.where.not(id: user.id).first
+  end
 end

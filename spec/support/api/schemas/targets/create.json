@@ -1,0 +1,8 @@
+{
+  "type": "object",
+  "properties": {
+    "target":             { "$ref": "target.json" },
+    "match_conversation": { "$ref": "../match_conversations/match_conversation.json" },
+    "matched_user":       { "$ref": "../users/user.json" }
+  }
+}

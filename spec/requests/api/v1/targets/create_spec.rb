@@ -4,7 +4,7 @@ describe 'POST api/v1/targets', type: :request do
   let(:user)           { create :user }
   let(:topic)          { create :topic }
   let(:radius)         { 40 }
-  let(:coordinates)    { [-56.185118, -34.906573] }
+  let(:coordinates)    { [34.901112, 56.164532] }
   let(:target_created) { Target.last }
 
   let(:params) do
@@ -25,8 +25,8 @@ describe 'POST api/v1/targets', type: :request do
       let!(:matched_target) do
         create :target,
                title: '81.xxx meters far from coordinates',
-               lng: -56.185037,
-               lat: -34.907311,
+               lng: 34.901102,
+               lat: 56.164522,
                topic: topic,
                user: matched_target_user,
                radius: 45
@@ -83,6 +83,26 @@ describe 'POST api/v1/targets', type: :request do
       it 'does not return a matched user' do
         post api_v1_targets_path, params: params, headers: auth_headers, as: :json
         expect(json).not_to include(:matched_user)
+      end
+    end
+
+    context 'when a match is find' do
+      let!(:first_target) do
+        create(:target, topic_id: params[:target][:topic_id],
+                        lat: params[:target][:lat],
+                        lng: params[:target][:lng])
+      end
+
+      it 'creates the match conversation' do
+        expect do
+          post api_v1_targets_path, params: params, headers: auth_headers, as: :json
+        end.to change(MatchConversation, :count).by(1)
+      end
+
+      it 'creates the match conversation instances' do
+        expect do
+          post api_v1_targets_path, params: params, headers: auth_headers, as: :json
+        end.to change(MatchConversationInstance, :count).by(2)
       end
     end
   end

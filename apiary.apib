@@ -564,3 +564,44 @@ Response may or may not add matched_user and match_conversation depending if the
 
     + Body
 
+
+## Match conversation [/api/v1/match_conversations]
+
+### Get conversations [GET]
+
+
++ Request (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            uid: test@test.com
+
+    + Body
+
+
++ Response 200 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
+
+    + Body
+
+    [
+      {
+        "match_id": 1,
+        "topic_icon": "/topic/icon/1/eb7bf9f2-62be-451c-af5b-5b41150eef1c.jpg",
+        "user": {
+          "id": 1,
+          "full_name": "Jon Doe",
+          "avatar": {
+            "original_url": "/topic/icon/1/eb7bf9f2-62be-451c-af5b-5b41150eef1c.jpg",
+            "normal_url": "/topic/icon/1/eb7bf9f2-62be-451c-af5b-5b41150eef1c.jpg",
+            "small_thumb_url": "/topic/icon/1/eb7bf9f2-62be-451c-af5b-5b41150eef1c.jpg"
+          }
+        }
+      }
+    ]

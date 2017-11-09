@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'GET api/v1/topics', type: :request do
-  let(:user) { create :user }
+  let(:user)    { create :user }
   let!(:topics) { create_list :topic, 5 }
 
   it 'returns success' do

@@ -46,6 +46,7 @@ class User < ApplicationRecord
 
   has_many :targets, dependent: :destroy
   has_many :match_conversation_instances, dependent: :destroy
+  has_many :match_conversations, through: :match_conversation_instances
 
   validates :uid, uniqueness: { scope: :provider }
   validates :email, uniqueness: true, if: :uses_email?

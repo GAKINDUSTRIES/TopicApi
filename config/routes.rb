@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         get :status, to: 'api#status'
         resources :topics, only: :index
         resources :targets, only: %i(create index destroy)
+        resources :match_conversations, only: :index
         resources :users, only: %i(show update) do
           controller :sessions do
             post :facebook, on: :collection

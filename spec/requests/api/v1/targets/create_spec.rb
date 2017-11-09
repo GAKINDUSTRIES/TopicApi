@@ -47,10 +47,10 @@ describe 'POST api/v1/targets', type: :request do
         end.to change(Target, :count).by(1)
       end
 
-      it 'creates a new match conversation' do
-        expect do
-          post api_v1_targets_path, params: params, headers: auth_headers, as: :json
-        end.to change(MatchConversation, :count).by(1)
+      it 'creates a new match conversation and match conversation instances' do
+        post api_v1_targets_path, params: params, headers: auth_headers, as: :json
+        expect(MatchConversation.count).to eq 1
+        expect(MatchConversationInstance.count).to eq 2
       end
 
       it 'returns the owner of the matched target' do
@@ -68,6 +68,7 @@ describe 'POST api/v1/targets', type: :request do
         expect(target_created.topic_id).to eq topic.id
       end
     end
+
     context 'when does not match a target' do
       it 'returns success' do
         post api_v1_targets_path, params: params, headers: auth_headers, as: :json

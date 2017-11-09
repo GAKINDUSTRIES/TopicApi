@@ -8,7 +8,7 @@ module Api
       def create
         @target = current_user.targets.create! targets_params
         @match_conversation = @target.match_conversation
-        @match_user = @match_conversation.try(:another_party, current_user)
+        @match_user = @match_conversation.try(:another_user, current_user)
       end
 
       def index

@@ -21,7 +21,7 @@ class MatchConversation < ApplicationRecord
 
   validates :topic, presence: true
 
-  def another_party(user)
+  def another_user(user)
     users.where.not(id: user.id).first
   end
 end

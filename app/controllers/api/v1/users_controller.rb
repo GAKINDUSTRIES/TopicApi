@@ -7,7 +7,7 @@ module Api
       end
 
       def update
-        current_user.update!(user_params)
+        current_user.update!(user_params) 
         render :show
       end
 

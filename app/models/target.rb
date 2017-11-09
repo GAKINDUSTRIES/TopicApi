@@ -11,7 +11,7 @@
 #  user_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  lonlat     :geography({:srid point, 4326
+#  lonlat     :geography({:srid not null, point, 4326
 #  matched    :boolean          default("false")
 #
 # Indexes
@@ -35,15 +35,15 @@ class Target < ActiveRecord::Base
   after_create :check_for_match
 
   scope :same_topic, -> (topic) { where(topic: topic) }
-  scope :oldest,     ->         { order(:id).first }
   scope :unmatched,  ->         { where(matched: false) }
-  scope :matches,    -> (lng, lat, radius, id, topic) do
+  scope :by_date,     ->         { order(:id) }
+  scope :matches, lambda { |lng, lat, radius, id, topic|
     where('ST_Intersects(ST_Buffer(targets.lonlat, targets.radius),
           ST_Buffer(ST_MakePoint(?, ?)::geography, ?))', lng, lat, radius)
-      .where('id != ?', id)
+      .where.not(id: id)
       .unmatched
       .same_topic(topic)
-  end
+  }
 
   private
 
@@ -62,9 +62,13 @@ class Target < ActiveRecord::Base
   end
 
   def check_for_match
-    matched_target = Target.matches(lng, lat, radius, id, topic).oldest
+    targets = Target.matches(lng, lat, radius, id, topic)
+    matched_target = targets.order(:id).first
     return unless matched_target.present?
+    create_conversation(matched_target)
+  end
 
+  def create_conversation(matched_target)
     new_conversation = MatchConversation.create!(topic: topic)
 
     [self, matched_target].each do |target|

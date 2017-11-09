@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20170918165051) do
     t.integer   "user_id",                                                                                null: false
     t.datetime  "created_at",                                                                             null: false
     t.datetime  "updated_at",                                                                             null: false
-    t.geography "lonlat",     limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
+    t.geography "lonlat",     limit: {:srid=>4326, :type=>"st_point", :geographic=>true},                 null: false
     t.boolean   "matched",                                                                default: false
     t.index ["lonlat"], name: "index_targets_on_lonlat", using: :gist
     t.index ["matched"], name: "index_targets_on_matched", using: :btree

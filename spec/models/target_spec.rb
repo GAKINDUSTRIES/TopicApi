@@ -11,7 +11,7 @@
 #  user_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  lonlat     :geography({:srid point, 4326
+#  lonlat     :geography({:srid not null, point, 4326
 #  matched    :boolean          default("false")
 #
 # Indexes

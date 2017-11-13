@@ -10,6 +10,7 @@
 #  title                 :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  online                :boolean          default("false")
 #
 # Indexes
 #
@@ -23,12 +24,29 @@ class MatchConversationInstance < ApplicationRecord
   belongs_to :match_conversation
   belongs_to :user
   belongs_to :target
+  has_many :messages
 
   validates :match_conversation, :target, :user, :last_logout, presence: true
   validates :user,
             uniqueness: { scope: :match_conversation, message: 'can\'t be on a conversation twice' }
 
   before_validation :assign_users_from_target
+
+  def read_messages
+    messages.unread.update_all(read: true)
+  end
+
+  def create_message(user, content)
+    messages.create!(user_id: user.id, content: content, read: online)
+  end
+
+  def online!
+    update!(online: false)
+  end
+
+  def offline!
+    update!(online: false)
+  end
 
   private
 

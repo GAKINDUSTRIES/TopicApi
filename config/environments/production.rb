@@ -3,6 +3,9 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
+  config.action_cable.url = "wss://#{ENV['SERVER_URL']}/cable"
+  config.action_cable.disable_request_forgery_protection = true
+  config.action_cable.allowed_request_origins = %w(target-app)
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers

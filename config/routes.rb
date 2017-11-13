@@ -13,13 +13,16 @@ Rails.application.routes.draw do
         get :status, to: 'api#status'
         resources :topics, only: :index
         resources :targets, only: %i(create index destroy)
-        resources :match_conversations, only: :index
+        resources :match_conversations, only: :index do
+          get :messages
+        end
         resources :users, only: %i(show update) do
           controller :sessions do
             post :facebook, on: :collection
           end
         end
       end
+      mount ActionCable.server => '/cable'
     end
   end
 end

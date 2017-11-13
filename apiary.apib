@@ -594,6 +594,7 @@ Response may or may not add matched_user and match_conversation depending if the
       {
         "match_id": 1,
         "topic_icon": "/topic/icon/1/eb7bf9f2-62be-451c-af5b-5b41150eef1c.jpg",
+        "last_message": "Hi!"
         "user": {
           "id": 1,
           "full_name": "Jon Doe",
@@ -605,3 +606,43 @@ Response may or may not add matched_user and match_conversation depending if the
         }
       }
     ]
+
+
+### Messages [GET api/v1/match_conversations/{id}/messages]
+
+
++ Request (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            uid: test@test.com
+
+    + Body
+
+
++ Response 200 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
+
+    + Body
+
+    {
+      "messages":[
+        {
+          "id": 1,
+          "content": "Hi!",
+          "date": "21/7/2017 15:42",
+          "user": {
+            "id": 1,
+            "avatar": {
+              "url": "/topic/icon/1/eb7bf9f2-62be-451c-af5b-5b41150eef1c.jpg"
+            }
+          }
+        }
+      ]
+    }

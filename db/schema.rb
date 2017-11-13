@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170918165051) do
+ActiveRecord::Schema.define(version: 20171115193342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,13 +49,14 @@ ActiveRecord::Schema.define(version: 20170918165051) do
   end
 
   create_table "match_conversation_instances", force: :cascade do |t|
-    t.integer  "user_id",               null: false
-    t.integer  "target_id",             null: false
-    t.integer  "match_conversation_id", null: false
-    t.datetime "last_logout",           null: false
+    t.integer  "user_id",                               null: false
+    t.integer  "target_id",                             null: false
+    t.integer  "match_conversation_id",                 null: false
+    t.datetime "last_logout",                           null: false
     t.string   "title"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "online",                default: false
     t.index ["match_conversation_id"], name: "index_match_conversation_instances_on_match_conversation_id", using: :btree
     t.index ["target_id"], name: "index_match_conversation_instances_on_target_id", using: :btree
     t.index ["user_id", "match_conversation_id"], name: "user_conversation_instance_index", unique: true, using: :btree
@@ -67,6 +68,17 @@ ActiveRecord::Schema.define(version: 20170918165051) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["topic_id"], name: "index_match_conversations_on_topic_id", using: :btree
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "match_conversation_instance_id"
+    t.integer  "user_id"
+    t.string   "content"
+    t.boolean  "read",                           default: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.index ["match_conversation_instance_id"], name: "index_messages_on_match_conversation_instance_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
   create_table "targets", force: :cascade do |t|

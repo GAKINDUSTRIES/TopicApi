@@ -18,9 +18,12 @@ RSpec.describe 'ChatChannel' do
   let(:user)          { create :user }
   let(:topic)         { create :topic }
   let(:second_topic)  { create :topic }
-  let!(:first_target) { create(:target, topic_id: topic.id, user_id: user.id) }
+  let!(:first_target) do
+    create(:target, topic_id: topic.id, lat: -34.907311, lng: -56.185037, radius: 45)
+  end
   let!(:second_target) do
-    create(:target, topic_id: topic.id, lat: first_target.lat, lng: first_target.lng)
+    create(:target, topic_id: topic.id, user_id: user.id,
+                    lat: -34.906573, lng: -56.185118, radius: 40)
   end
   subject(:channel) { ChatChannel.new(connection, {}) }
   let(:action_cable) { ActionCable.server }

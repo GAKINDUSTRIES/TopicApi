@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20171115193342) do
     t.json     "tokens"
     t.integer  "gender"
     t.string   "avatar"
+    t.string   "push_token"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree

@@ -22,6 +22,10 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
+  config.before(:each) do
+    WebMock.stub_request(:post, 'https://onesignal.com/api/v1/notifications')
+      .to_return(status: 200, body: '')
+  end
 end
 
 Shoulda::Matchers.configure do |config|

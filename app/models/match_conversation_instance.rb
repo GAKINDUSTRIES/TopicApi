@@ -38,6 +38,10 @@ class MatchConversationInstance < ApplicationRecord
 
   def create_message(user, content)
     messages.create!(user_id: user.id, content: content, read: online)
+    return if online
+    NotificationsJob.perform_now([user.push_token], 'You have received a new message.',
+                                 type: 'new_message', match_conversation_id: match_conversation_id
+                                )
   end
 
   def online!

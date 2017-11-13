@@ -23,6 +23,7 @@
 #  tokens                 :json
 #  gender                 :integer
 #  avatar                 :string
+#  push_token             :string
 #
 # Indexes
 #

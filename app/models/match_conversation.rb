@@ -30,10 +30,20 @@ class MatchConversation < ApplicationRecord
   end
 
   def user_joined(user)
-    match_conversation_instances.find_by(user_id: user.id).online!
+    match_conversation_instance(user).online!
   end
 
   def user_left(user)
-    match_conversation_instances.find_by(user_id: user.id).offline!
+    match_conversation_instance(user).offline!
+  end
+
+  def unread_messages(user)
+    match_conversation_instance(user).messages.unread.count
+  end
+
+  private
+
+  def match_conversation_instance(user)
+    match_conversation_instances.find_by!(user_id: user.id)
   end
 end

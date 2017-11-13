@@ -79,5 +79,15 @@ class Target < ActiveRecord::Base
         match_conversation: new_conversation,
         last_logout: Time.now)
     end
+    notify_matched_user(matched_target.user, new_conversation)
+  end
+
+  def notify_matched_user(matched_user, match_conversation)
+    NotificationsJob.perform_now(
+      [matched_user.push_token], 'You have a new match!',
+      first_name: user.first_name,
+      avatar: user.avatar.url,
+      match_conversation_id: match_conversation.id
+    )
   end
 end

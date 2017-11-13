@@ -36,6 +36,7 @@ describe 'POST api/v1/users/sign_in', type: :request do
         first_name: user.first_name,
         gender:     user.gender,
         last_name:  user.last_name,
+        push_token: user.push_token,
         avatar:     avatar_params
       }.with_indifferent_access
       expect(json[:data]).to eq(response_expected)

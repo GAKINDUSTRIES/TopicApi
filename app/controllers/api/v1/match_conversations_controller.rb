@@ -5,7 +5,7 @@ module Api
     class MatchConversationsController < Api::V1::ApiController
       def index
         @matches = current_user.match_conversations
-                   .includes(:match_conversation_instances, :targets).page params[:page]
+                   .includes(:targets, match_conversation_instances: :messages).page params[:page]
       end
 
       def messages

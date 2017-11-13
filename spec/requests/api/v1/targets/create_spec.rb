@@ -67,6 +67,18 @@ describe 'POST api/v1/targets', type: :request do
         post api_v1_targets_path, params: params, headers: auth_headers, as: :json
         expect(target_created.topic_id).to eq topic.id
       end
+
+      it 'notifies the users that matched with the target' do
+        allow(NotificationService).to receive(:notify).once.and_call_original
+        post api_v1_targets_path, params: params, headers: auth_headers, as: :json
+        expect(NotificationService).to have_received(:notify).with(
+          [matched_target.user.push_token],
+          'You have a new match!',
+          first_name: user.first_name,
+          avatar: user.avatar.url,
+          match_conversation_id: MatchConversation.last.id
+        )
+      end
     end
 
     context 'when does not match a target' do

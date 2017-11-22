@@ -5,16 +5,13 @@ module Api
     class MatchConversationsController < Api::V1::ApiController
       def index
         @matches = current_user.match_conversations
-                   .includes(:targets, match_conversation_instances: :messages).page params[:page]
+                   .includes(:match_conversation_instances, :messages).page params[:page]
       end
 
       def messages
-        match_conversation_instance = match_conversation.match_conversation_instances
-                                      .find_by(user_id: current_user.id)
-        messages = match_conversation_instance.messages.newest.includes(:user)
+        messages = match_conversation.messages.newest.includes(:user)
         messages = messages.page params[:page]
         @messages = messages.reverse
-        match_conversation_instance.read_messages
       end
 
       private

@@ -21,12 +21,12 @@ describe 'GET api/v1/match_conversations/{id}/messages', type: :request do
     let!(:second_target) do
       create(:target, topic_id: topic.id, lat: -34.906573, lng: -56.185118, radius: 40)
     end
-    let(:match_conversation_instance) { first_target.match_conversation_instance }
+    let(:match_conversation) { first_target.match_conversation }
 
     context 'when no messages were sent' do
       it 'returns no messages' do
         get api_v1_match_conversation_messages_path(
-          match_conversation_id: first_target.match_conversation.id),
+          match_conversation_id: match_conversation.id),
             headers: auth_headers, as: :json
         expect(json[:messages].count).to eq 0
       end
@@ -35,7 +35,7 @@ describe 'GET api/v1/match_conversations/{id}/messages', type: :request do
     context 'when messages have been sent' do
       before(:each) do
         @first_message, @second_message, @third_message = create_list(
-          :message, 3, match_conversation_instance_id: match_conversation_instance.id
+          :message, 3, match_conversation_id: match_conversation.id
         )
       end
 
@@ -48,20 +48,11 @@ describe 'GET api/v1/match_conversations/{id}/messages', type: :request do
 
       it 'returns the messages oldest first' do
         get api_v1_match_conversation_messages_path(
-          match_conversation_id: first_target.match_conversation.id),
+          match_conversation_id: match_conversation.id),
             headers: auth_headers, as: :json
         expect(json[:messages][0][:id]).to eq Message.first.id
         expect(json[:messages][1][:id]).to eq Message.second.id
         expect(json[:messages][2][:id]).to eq Message.third.id
-      end
-
-      it 'mark messages as read' do
-        get api_v1_match_conversation_messages_path(
-          match_conversation_id: first_target.match_conversation.id),
-            headers: auth_headers, as: :json
-        expect(@first_message.reload.read).to eq true
-        expect(@second_message.reload.read).to eq true
-        expect(@third_message.reload.read).to eq true
       end
     end
   end

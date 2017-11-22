@@ -18,9 +18,13 @@ describe 'GET api/v1/match_conversations', type: :request do
   let!(:fourth) do
     create(:target, topic_id: second_topic.id, lat: -34.906573, lng: -56.185118, radius: 40)
   end
+  let!(:first_message) do
+    create(:message, match_conversation_id: second_target.match_conversation.id,
+                     created_at: Faker::Date.backward(1))
+  end
   before(:each) do
-    @first_message, @second_message = create_list(
-      :message, 2, match_conversation_instance_id: second_target.match_conversation_instance.id
+    @second_message, @third_message = create_list(
+      :message, 2, match_conversation_id: second_target.match_conversation.id
     )
   end
 
@@ -36,7 +40,7 @@ describe 'GET api/v1/match_conversations', type: :request do
 
   it 'returns the last message of the conversation' do
     get api_v1_match_conversations_path, headers: auth_headers, as: :json
-    expect(json[:matches][0][:last_message][:id]).to eq @second_message.id
+    expect(json[:matches][0][:last_message][:id]).to eq @third_message.id
   end
 
   it 'returns the amount of unread messages on each conversation' do

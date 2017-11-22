@@ -11,7 +11,7 @@ class ChatChannel < ApplicationCable::Channel
   def send_message(data)
     content = data['content']
     match_conversation = MatchConversation.find(data['match_conversation_id'])
-    create_messages(match_conversation, content)
+    match_conversation.create_message(current_user, content)
     self.class.broadcast_to match_conversation, message_params(content)
   end
 
@@ -31,11 +31,5 @@ class ChatChannel < ApplicationCable::Channel
       },
       user_id: current_user.id,
       date: Time.zone.now.iso8601 }
-  end
-
-  def create_messages(match_conversation, content)
-    match_conversation.match_conversation_instances.each do |instance|
-      instance.create_message(current_user, content)
-    end
   end
 end

@@ -4,6 +4,8 @@ class AddMatchConversationInstanceTable < ActiveRecord::Migration[5.0]
       t.references :user              , null: false
       t.references :target            , null: false
       t.references :match_conversation, null: false
+      t.datetime   :last_read,          null: true
+      t.boolean    :online,             null: false, default: false
       t.datetime   :last_logout,        null: false
       t.string     :title
       t.timestamps                      null: false

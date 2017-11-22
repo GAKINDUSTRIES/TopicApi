@@ -103,6 +103,4 @@ UnusedParameters:
   enabled: true
   exclude: []
 UtilityFunction:
-  enabled: true
-  exclude: [find_or_create_by_fb, NotificationsJob#perform,]
-  max_helper_calls: 1
+  enabled: false

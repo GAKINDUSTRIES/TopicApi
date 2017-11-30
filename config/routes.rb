@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         resources :match_conversations, only: :index do
           get :messages
         end
+        resources :messages, only: :index
         resources :users, only: %i(show update) do
           controller :sessions do
             post :facebook, on: :collection

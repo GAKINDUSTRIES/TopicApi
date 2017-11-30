@@ -66,6 +66,10 @@ class User < ApplicationRecord
     end
   end
 
+  def unread_messages_count
+    match_conversation_instances.sum(:unread_messages)
+  end
+
   private
 
   def uses_email?

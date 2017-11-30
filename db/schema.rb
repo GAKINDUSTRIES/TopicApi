@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113134353) do
+ActiveRecord::Schema.define(version: 20171201142215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,12 +52,12 @@ ActiveRecord::Schema.define(version: 20171113134353) do
     t.integer  "user_id",                               null: false
     t.integer  "target_id",                             null: false
     t.integer  "match_conversation_id",                 null: false
-    t.datetime "last_read"
     t.boolean  "online",                default: false, null: false
     t.datetime "last_logout",                           null: false
     t.string   "title"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.integer  "unread_messages",       default: 0
     t.index ["match_conversation_id"], name: "index_match_conversation_instances_on_match_conversation_id", using: :btree
     t.index ["target_id"], name: "index_match_conversation_instances_on_target_id", using: :btree
     t.index ["user_id", "match_conversation_id"], name: "user_conversation_instance_index", unique: true, using: :btree

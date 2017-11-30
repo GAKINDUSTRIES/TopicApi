@@ -12,6 +12,7 @@ module Api
         messages = match_conversation.messages.newest.includes(:user)
         messages = messages.page params[:page]
         @messages = messages.reverse
+        match_conversation.mark_messages_as_read(current_user)
       end
 
       private

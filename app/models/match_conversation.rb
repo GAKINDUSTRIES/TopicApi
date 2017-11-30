@@ -29,7 +29,9 @@ class MatchConversation < ApplicationRecord
   def create_message(user, content)
     messages.create!(user_id: user.id, content: content)
     user_to_notify = another_user(user)
-    return if match_conversation_instance(user_to_notify).online?
+    match_instance_user_to_notify = match_conversation_instance(user_to_notify)
+    return if match_instance_user_to_notify.online?
+    match_instance_user_to_notify.increase_unread
     NotificationsJob.perform_now([user_to_notify.push_token], 'You have received a new message.',
                                  type: 'new_message', match_conversation_id: id
                                 )
@@ -52,8 +54,11 @@ class MatchConversation < ApplicationRecord
   end
 
   def unread_messages(user)
-    last_time_online = match_conversation_instance(user).last_read
-    messages.unread(last_time_online).count
+    match_conversation_instance(user).unread_messages
+  end
+
+  def mark_messages_as_read(user)
+    match_conversation_instance(user).mark_messages_as_read
   end
 
   private

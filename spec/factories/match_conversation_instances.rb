@@ -6,12 +6,12 @@
 #  user_id               :integer          not null
 #  target_id             :integer          not null
 #  match_conversation_id :integer          not null
-#  last_read             :datetime
 #  online                :boolean          default("false"), not null
 #  last_logout           :datetime         not null
 #  title                 :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  unread_messages       :integer          default("0")
 #
 # Indexes
 #
@@ -26,6 +26,7 @@ FactoryGirl.define do
     match_conversation
     target
     user
+    unread_messages 0
     last_logout { Faker::Date.backward(14) }
     title       { Faker::Name.title }
   end

@@ -696,3 +696,32 @@ Response may or may not add matched_user and match_conversation depending if the
         }
       ]
     }
+
+
+## Messages [/api/v1/messages]
+
+### Get unread messages count [GET]
+
++ Request (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            uid: test@test.com
+
+    + Body
+
+
++ Response 200 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
+
+    + Body
+
+        {
+          "count": 1
+        }

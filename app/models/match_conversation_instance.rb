@@ -6,12 +6,12 @@
 #  user_id               :integer          not null
 #  target_id             :integer          not null
 #  match_conversation_id :integer          not null
-#  last_read             :datetime
 #  online                :boolean          default("false"), not null
 #  last_logout           :datetime         not null
 #  title                 :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  unread_messages       :integer          default("0")
 #
 # Indexes
 #
@@ -31,23 +31,26 @@ class MatchConversationInstance < ApplicationRecord
             uniqueness: { scope: :match_conversation, message: 'can\'t be on a conversation twice' }
 
   before_validation :assign_users_from_target
-  before_create :set_last_read
 
   def online!
     update!(online: false)
   end
 
   def offline!
-    update!(online: false, last_read: Time.zone.now)
+    update!(online: false)
+  end
+
+  def increase_unread
+    update!(unread_messages: unread_messages + 1)
+  end
+
+  def mark_messages_as_read
+    update!(unread_messages: 0)
   end
 
   private
 
   def assign_users_from_target
     self.user_id = target.user_id
-  end
-
-  def set_last_read
-    self.last_read = Time.zone.now
   end
 end

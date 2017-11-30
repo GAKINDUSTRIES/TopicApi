@@ -421,6 +421,54 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
               ]
             }
 
+### Update passowrd [PUT]
+
+  + Request (application/json)
+
+      + Body
+
+              {
+                "current_password": "password",
+                "password": "12345678",
+                "password_confirmation": "12345678"
+              }
+
+  + Response 200 (application/json)
+      + Headers
+
+              access-token: sO2bm_Bpdyoo8r78jZ-fqg
+              client: QADgNCWRJj0LyRruqzYbBg
+              expiry: 1489009792
+              uid: test@test.com
+
+      + Body
+
+          {
+            "success": true,
+            "data": {
+                "id": 1,
+                "provider": "email",
+                "email": "email@mail.com",
+                "uid": "email@mail.com",
+                "avatar": {
+                    "url": null,
+                    "normal": {
+                      "url": null
+                    },
+                    "small_thumb": {
+                      "url": null
+                    }
+                },
+                "first_name": "John",
+                "last_name": "Doe",
+                "created_at": "2017-11-29T13:54:50.370Z",
+                "updated_at": "2017-11-30T14:50:44.068Z",
+                "gender": null,
+                "push_token": null
+            },
+            "message": "Your password has been successfully updated."
+          }
+
 ## Target Collection [/api/v1/targets]
 
 ### Create Target [POST]

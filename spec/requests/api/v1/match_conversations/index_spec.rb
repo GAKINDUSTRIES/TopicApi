@@ -43,7 +43,7 @@ describe 'GET api/v1/match_conversations', type: :request do
 
   it 'returns the last message of the conversation' do
     get api_v1_match_conversations_path, headers: auth_headers, as: :json
-    expect(json[:matches][0][:last_message][:content]).to eq 'second_message'
+    expect(json[:matches][0][:last_message]).to eq 'second_message'
   end
 
   it 'returns the amount of unread messages on each conversation' do

@@ -33,7 +33,7 @@ class MatchConversationInstance < ApplicationRecord
   before_validation :assign_users_from_target
 
   def online!
-    update!(online: false)
+    update!(online: true)
   end
 
   def offline!

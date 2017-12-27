@@ -14,7 +14,7 @@
 #
 
 class MatchConversation < ApplicationRecord
-  mount_uploader :icon, IconUploader
+  mount_base64_uploader :icon, IconUploader
 
   belongs_to :topic
   has_many :messages

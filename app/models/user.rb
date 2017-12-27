@@ -43,7 +43,7 @@ class User < ApplicationRecord
 
   enum gender: %i(female male other)
 
-  mount_uploader :avatar, AvatarUploader
+  mount_base64_uploader :avatar, AvatarUploader
 
   has_many :targets, dependent: :destroy
   has_many :match_conversation_instances, dependent: :destroy

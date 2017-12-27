@@ -145,7 +145,7 @@ For GENDER attribute, possible values are: __'male'__, __'female'__ and __'other
                   "first_name": "John",
                   "last_name": "Doe",
                   "gender": "male",
-                  "avatar": "array_of_bytes",
+                  "avatar": "image_in_base64",
                   "push_token": "1dd608f2-c6a1-11e3-851d-000c2940e62c"
                 }
             }
@@ -234,6 +234,13 @@ For GENDER attribute, possible values are: __'male'__, __'female'__ and __'other
 
 ### Login with Facebook [POST]
 
++ Request (application/json)
+
+    + Body
+
+            {
+              "access_token": "facebook-access-token"
+            }
 
 + Response 403
     + Body
@@ -291,10 +298,11 @@ For GENDER attribute, possible values are: __'male'__, __'female'__ and __'other
 
 ## Reset password [/api/v1/users/password]
 
-### Reset passowrd [POST]
+More information of how reset password works: https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
+
+### Reset password [POST]
 
 Use this route to send a password reset confirmation email
-https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
 
 + Request (application/json)
     + Body
@@ -309,22 +317,10 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
 
             {
               "success": true,
-              "data":
-                {
-                  "id": 781,
-                  "provider": "email",
-                  "email": "wilma_farrell@reinger.info",
-                  "uid": "wilma_farrell@reinger.info",
-                  "first_name": "",
-                  "last_name": "",
-                  "username": "39kellen_bahringer",
-                  "created_at": "2017-03-01T18:58:42.223Z",
-                  "updated_at": "2017-03-01T18:58:42.439Z"
-                },
-              "message": "An email has been sent to 'wilma_farrell@reinger.info' containing instructions for resetting your password."
+              "message": "An email has been sent to 'example@mail.com' containing instructions for resetting your password."
             }
 
-### Reset passowrd [PUT]
+### Reset password [PUT]
 
 Use this route to change user's passwords
 https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow

@@ -10,7 +10,7 @@
 #
 
 class Topic < ApplicationRecord
-  mount_uploader :icon, IconUploader
+  mount_base64_uploader :icon, IconUploader
 
   has_many :targets, dependent: :destroy
 

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
             post :facebook, on: :collection
           end
         end
+
+        resources :questions, only: :create
       end
       mount ActionCable.server => '/cable'
     end

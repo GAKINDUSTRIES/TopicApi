@@ -33,8 +33,9 @@ Topic API is a ruby on rails api created to match people that like to chat with 
 - Postgis: Postgres extension is included to efficiently connect people with other people nearby.
 - ActionCable: Implemented for people to be able to chat with others.
 - Koala: Got bless to the one who invented OAuth2. This help us to login using Facebook within seconds.
+- ActiveAdmin: Easy interface to play with.
 
-And mucho more amazing stuff! Check out the code.
+And much more amazing stuff! Check out the code.
 
 ## Setup
 
@@ -89,8 +90,9 @@ And mucho more amazing stuff! Check out the code.
 
 ## Demo
 
-Want to give it a try? Here's a [demo](https://topic-api.herokuapp.com) for you to play with.
+Want to give it a try? Here's a [demo](https://topic-api.herokuapp.com/admin) for you to play with.
 
+Check out the `seeds` for credentials
 
 ## Api Docs
 

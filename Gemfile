@@ -20,7 +20,7 @@ gem 'koala', '~> 1.10.1'
 gem 'pg', '~> 0.18.2'
 gem 'pry-rails', '~> 0.3.4'
 gem 'puma', '~> 3.0'
-gem 'rack-cors', '~> 0.4.0'
+gem 'rack-cors', '~> 1.0.6'
 gem 'sendgrid', '~> 1.2.4'
 gem 'mini_magick', '~> 4.3.3'                  # Resize images
 gem 'kaminari', '~> 0.17.0'                    # Pagination

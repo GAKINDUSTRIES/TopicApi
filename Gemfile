@@ -51,7 +51,7 @@ end
 
 group :development do
   gem 'annotate', '~> 2.6.5'
-  gem 'better_errors', '~> 2.1.1'
+  gem 'better_errors', '~> 2.9.1'
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'brakeman', '~> 3.4.0'
   gem 'letter_opener', '~> 1.4.1'
